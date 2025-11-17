@@ -7,10 +7,7 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -33,61 +30,43 @@ import { navItems } from "@/constants/data";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useUser } from "@clerk/nextjs";
 import {
-  IconBell,
   IconChevronRight,
   IconChevronsDown,
-  IconCreditCard,
   IconLogout,
   IconPhotoUp,
-  IconUserCircle,
 } from "@tabler/icons-react";
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import * as React from "react";
 import { Icons } from "../icons";
 import { OrgSwitcher } from "../org-switcher";
 export const company = {
-  name: "Acme Inc",
+  name: "Bohemia AI",
   logo: IconPhotoUp,
   plan: "Enterprise",
 };
 
-const tenants = [
-  { id: "1", name: "Acme Inc" },
-  { id: "2", name: "Beta Corp" },
-  { id: "3", name: "Gamma Ltd" },
-];
+const tenants = [{ id: "1", name: "Bohemia AI" }];
 
 export default function AppSidebar() {
   const pathname = usePathname();
   const { isOpen } = useMediaQuery();
   const { user } = useUser();
-  const router = useRouter();
-  const handleSwitchTenant = () => {
-    // Tenant switching functionality would be implemented here
-  };
-
   const activeTenant = tenants[0];
 
-  React.useEffect(() => {
-    // Side effects based on sidebar state changes
-  }, [isOpen]);
+  React.useEffect(() => {}, [isOpen]);
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
         {activeTenant && (
-          <OrgSwitcher
-            tenants={tenants}
-            defaultTenant={activeTenant}
-            onTenantSwitch={handleSwitchTenant}
-          />
+          <OrgSwitcher title="Bohemia AI" subtitle="Publish voice agents" />
         )}
       </SidebarHeader>
       <SidebarContent className="overflow-x-hidden">
         <SidebarGroup>
-          <SidebarGroupLabel>Overview</SidebarGroupLabel>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarMenu>
             {navItems.map((item) => {
               const Icon = item.icon ? Icons[item.icon] : Icons.logo;
@@ -102,7 +81,12 @@ export default function AppSidebar() {
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton
                         tooltip={item.title}
-                        isActive={pathname === item.url}
+                        isActive={
+                          pathname === item.url &&
+                          !(item.items ?? []).some(
+                            (sub) => sub.url === pathname,
+                          )
+                        }
                       >
                         {item.icon && <Icon />}
                         <span>{item.title}</span>
@@ -170,36 +154,6 @@ export default function AppSidebar() {
                 align="end"
                 sideOffset={4}
               >
-                <DropdownMenuLabel className="p-0 font-normal">
-                  <div className="px-1 py-1.5">
-                    {user && (
-                      <UserAvatarProfile
-                        className="h-8 w-8 rounded-lg"
-                        showInfo
-                        user={user}
-                      />
-                    )}
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-
-                <DropdownMenuGroup>
-                  <DropdownMenuItem
-                    onClick={() => router.push("/dashboard/profile")}
-                  >
-                    <IconUserCircle className="mr-2 h-4 w-4" />
-                    Profile
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <IconCreditCard className="mr-2 h-4 w-4" />
-                    Billing
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <IconBell className="mr-2 h-4 w-4" />
-                    Notifications
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <IconLogout className="mr-2 h-4 w-4" />
                   <SignOutButton redirectUrl="/auth/sign-in" />
