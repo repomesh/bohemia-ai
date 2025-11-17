@@ -27,7 +27,6 @@ import {
 } from "@/components/ui/sidebar";
 import { UserAvatarProfile } from "@/components/user-avatar-profile";
 import { navItems } from "@/constants/data";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { useUser } from "@clerk/nextjs";
 import {
   IconChevronRight,
@@ -38,7 +37,6 @@ import {
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as React from "react";
 import { Icons } from "../icons";
 import { OrgSwitcher } from "../org-switcher";
 export const company = {
@@ -51,11 +49,8 @@ const tenants = [{ id: "1", name: "Bohemia AI" }];
 
 export default function AppSidebar() {
   const pathname = usePathname();
-  const { isOpen } = useMediaQuery();
   const { user } = useUser();
   const activeTenant = tenants[0];
-
-  React.useEffect(() => {}, [isOpen]);
 
   return (
     <Sidebar collapsible="icon">
@@ -84,7 +79,7 @@ export default function AppSidebar() {
                         isActive={
                           pathname === item.url &&
                           !(item.items ?? []).some(
-                            (sub) => sub.url === pathname,
+                            (sub) => sub.url === pathname
                           )
                         }
                       >
