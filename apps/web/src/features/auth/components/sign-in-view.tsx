@@ -58,6 +58,7 @@ export default function SignInViewPage() {
             initialValues={{
               emailAddress: "your_mail+clerk_test@example.com",
             }}
+            fallbackRedirectUrl="/dashboard/agents"
           />
 
           <p className="text-muted-foreground px-8 text-center text-sm">
