@@ -40,7 +40,7 @@ const ResultItem = React.forwardRef(
               {ancestors.length > 0 &&
                 ancestors.map((ancestor) => (
                   <React.Fragment key={ancestor.id}>
-                    <span className="text-muted-foreground mr-2">
+                    <span className="text-muted-foreground h-4 w-4">
                       {ancestor.name}
                     </span>
                     <span className="mr-2">&rsaquo;</span>

@@ -167,7 +167,7 @@ export default function AgentDetailsPage() {
     return (
       <div className="space-y-4">
         <Button variant="ghost" onClick={() => router.back()}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" />
           Back
         </Button>
         <div className="text-muted-foreground">Agent not found.</div>
@@ -198,11 +198,11 @@ export default function AgentDetailsPage() {
         </div>
         <div className="flex items-center gap-2">
           <Button onClick={() => router.back()} variant="outline">
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
           <Button onClick={handleTest} disabled={testing}>
-            <Play className="mr-2 h-4 w-4" />
+            <Play className="h-4 w-4" />
             {testing ? "Starting..." : "Test Agent"}
           </Button>
         </div>

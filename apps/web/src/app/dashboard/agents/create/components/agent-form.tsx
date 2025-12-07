@@ -300,9 +300,9 @@ export function AgentForm() {
             onClick={() => setTestMode(true)}
           >
             {loading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <TestTube className="mr-2 h-4 w-4" />
+              <TestTube className="h-4 w-4" />
             )}
             Create & Test
           </Button>
@@ -313,9 +313,9 @@ export function AgentForm() {
             onClick={() => setTestMode(false)}
           >
             {loading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <Save className="mr-2 h-4 w-4" />
+              <Save className="h-4 w-4" />
             )}
             Create Agent
           </Button>

@@ -150,7 +150,7 @@ export default function AppSidebar() {
                 sideOffset={4}
               >
                 <DropdownMenuItem>
-                  <IconLogout className="mr-2 h-4 w-4" />
+                  <IconLogout className="h-4 w-4" />
                   <SignOutButton redirectUrl="/auth/sign-in" />
                 </DropdownMenuItem>
               </DropdownMenuContent>
