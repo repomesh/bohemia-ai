@@ -260,7 +260,7 @@ export default function AgentDetailsPage() {
 
       <Card className="space-y-3 p-6">
         <h2 className="text-lg font-medium">System Instructions</h2>
-        <pre className="wrap-break-word bg-muted/40 max-h-[60vh] overflow-auto whitespace-pre-wrap rounded border p-3 text-sm">
+        <pre className="bg-muted/40 max-h-[60vh] overflow-auto rounded border p-3 text-sm wrap-break-word whitespace-pre-wrap">
           {agent.instructions}
         </pre>
       </Card>

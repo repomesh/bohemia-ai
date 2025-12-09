@@ -298,7 +298,7 @@ function LiveKitTester({
       </div>
 
       {error && (
-        <div className="wrap-break-word text-sm text-red-500">
+        <div className="text-sm wrap-break-word text-red-500">
           Error: {error}
         </div>
       )}
