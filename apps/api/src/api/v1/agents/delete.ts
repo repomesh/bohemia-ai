@@ -9,7 +9,7 @@ const app = new Hono();
 app.delete("/:id", async (c) => {
   try {
     const user = requireAuth(c);
-    if (!user) return;
+    if (user instanceof Response) return user;
 
     const id = c.req.param("id");
     const db = getDb();

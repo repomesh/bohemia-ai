@@ -39,12 +39,10 @@ export async function clerkAuth(c: Context, next: Next) {
   return next();
 }
 
-export function requireAuth(c: Context) {
+export function requireAuth(c: Context): AuthUser | Response {
   const user = c.get("user") as AuthUser | null;
   if (!user) {
-    c.status(401);
-    c.json({ error: "Unauthorized" }, 401);
-    return null;
+    return c.json({ error: "Unauthorized" }, 401);
   }
   return user;
 }

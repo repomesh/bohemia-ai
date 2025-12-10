@@ -11,7 +11,7 @@ const app = new Hono();
 app.put("/:id", zValidator("json", updateAgentSchema), async (c) => {
   try {
     const user = requireAuth(c);
-    if (!user) return;
+    if (user instanceof Response) return user;
 
     const id = c.req.param("id");
     const updateData = c.req.valid("json");

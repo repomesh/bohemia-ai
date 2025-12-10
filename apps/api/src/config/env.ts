@@ -15,7 +15,6 @@ const envSchema = z.object({
     .optional(),
 
   OPENAI_API_KEY: z.string().optional(),
-  OPENAI_BASE_URL: z.string().url().optional(),
   DEEPGRAM_API_KEY: z.string().optional(),
   ELEVENLABS_API_KEY: z.string().optional(),
   CLERK_SECRET_KEY: z.string().optional(),

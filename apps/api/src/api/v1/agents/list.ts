@@ -11,7 +11,7 @@ const app = new Hono();
 app.get("/", zValidator("query", querySchema), async (c) => {
   try {
     const user = requireAuth(c);
-    if (!user) return;
+    if (user instanceof Response) return user;
 
     const { page, limit, provider } = c.req.valid("query");
     const db = getDb();

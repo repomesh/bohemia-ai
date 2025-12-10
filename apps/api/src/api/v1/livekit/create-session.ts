@@ -9,7 +9,7 @@ const app = new Hono();
 app.post("/", zValidator("json", createSessionSchema), async (c) => {
   try {
     const user = requireAuth(c);
-    if (!user) return;
+    if (user instanceof Response) return user;
 
     const { agentId, isTest } = c.req.valid("json");
 

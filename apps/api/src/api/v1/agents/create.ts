@@ -10,7 +10,7 @@ const app = new Hono();
 app.post("/", zValidator("json", createAgentSchema), async (c) => {
   try {
     const user = requireAuth(c);
-    if (!user) return;
+    if (user instanceof Response) return user;
 
     const agentData = c.req.valid("json");
     const db = getDb();
